@@ -1,8 +1,6 @@
-// GSAP Animations for Ultra-Modern Portfolio
+// Portfolio Animations
 
-// Wait for DOM to be fully loaded
 window.addEventListener("DOMContentLoaded", () => {
-  // Ensure GSAP and plugins are loaded
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
   }
@@ -14,11 +12,11 @@ window.addEventListener("DOMContentLoaded", () => {
   initDesktopNavbar();
   initScrollProgress();
   initGlitch();
-  initGSAPSmoothScroll(); // GSAP smooth scrolling
+  initGSAPSmoothScroll();
 });
 
-// Main Animation Function
 function initAnimations() {
+
   const isMobile = window.innerWidth <= 768;
   
   // Hero Section Animations
@@ -66,10 +64,10 @@ function initAnimations() {
       {
         opacity: 0,
         y: isMobile ? 0 : 20,
-        duration: 0.8,
+        duration: 0.4,
         ease: "power2.out",
       },
-      "-=0.6"
+      "-=0.8"
     )
     .to(".contact-cta", {
       opacity: 1,
@@ -260,18 +258,7 @@ function initAnimations() {
     });
   }
 
-  // Parallax effect on contact card - DISABLED to prevent movement
-  /*
-  gsap.to(".contact-card", {
-    y: -15,
-    scrollTrigger: {
-      trigger: "#contact",
-      start: "top top",
-      end: "bottom top",
-      scrub: 1,
-    },
-  });
-  */
+
 
   // Contact form fields animation - ensure they stay interactive
   gsap.from(
@@ -280,7 +267,6 @@ function initAnimations() {
       opacity: 0,
       y: 30,
       duration: 0.6,
-      stagger: 0.1,
       ease: "power2.out",
       scrollTrigger: {
         trigger: "#contact-form",
@@ -379,20 +365,7 @@ function initAnimations() {
     }
   });
 
-  // Footer Animation - DISABLED
-  /*
-  gsap.from("footer", {
-    opacity: 0,
-    y: 20,
-    duration: 0.8,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "footer",
-      start: "top 90%",
-      toggleActions: "play none none reverse",
-    },
-  });
-  */
+
 }
 
 // Create additional particles dynamically
@@ -587,120 +560,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Custom scroll navigation for desktop only - Smooth section scrolling
-// DISABLED: Using CSS scroll-snap instead for more precise control
-/*
-function initSectionScroll() {
-  // Only enable on desktop
-  if (window.innerWidth <= 768) return;
-  
-  const sections = document.querySelectorAll('section');
-  let currentSection = 0;
-  let isScrolling = false;
-  let scrollTimeout;
-  let isFormFocused = false;
-  
-  // Track when user is interacting with form elements
-  const formInputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
-  formInputs.forEach(input => {
-    input.addEventListener('focus', () => {
-      isFormFocused = true;
-    });
-    input.addEventListener('blur', () => {
-      isFormFocused = false;
-    });
-  });
-  
-  function scrollToSection(index) {
-    if (index < 0 || index >= sections.length || isScrolling) return;
-    
-    isScrolling = true;
-    currentSection = index;
-    
-    sections[index].scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-    
-    // Longer timeout for smoother experience
-    setTimeout(() => {
-      isScrolling = false;
-    }, 1200);
-  }
-  
-  // Detect which section is currently in view
-  function updateCurrentSection() {
-    const scrollPosition = window.scrollY + window.innerHeight / 2;
-    
-    sections.forEach((section, index) => {
-      const sectionTop = section.offsetTop;
-      const sectionBottom = sectionTop + section.offsetHeight;
-      
-      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-        currentSection = index;
-      }
-    });
-  }
-  
-  // Handle wheel events with better debouncing
-  let accumulatedDelta = 0;
-  const deltaThreshold = 100; // Require more scroll to trigger
-  
-  window.addEventListener('wheel', (e) => {
-    // Don't interfere if on mobile, already scrolling, or user is typing in form
-    if (window.innerWidth <= 768 || isScrolling || isFormFocused) return;
-    
-    // Check if scrolling inside contact form area
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm && contactForm.contains(e.target)) {
-      return; // Allow normal scrolling in form
-    }
-    
-    e.preventDefault();
-    
-    accumulatedDelta += e.deltaY;
-    
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      if (Math.abs(accumulatedDelta) > deltaThreshold) {
-        updateCurrentSection();
-        
-        if (accumulatedDelta > 0) {
-          // Scrolling down
-          scrollToSection(currentSection + 1);
-        } else {
-          // Scrolling up
-          scrollToSection(currentSection - 1);
-        }
-        
-        accumulatedDelta = 0;
-      }
-    }, 150);
-  }, { passive: false });
-  
-  // Update current section on scroll
-  window.addEventListener('scroll', updateCurrentSection, { passive: true });
-  
-  // Initialize
-  updateCurrentSection();
-}
-
-// Initialize section scroll on desktop
-if (window.innerWidth > 768) {
-  initSectionScroll();
-}
-
-// Reinitialize on resize
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    if (window.innerWidth > 768) {
-      initSectionScroll();
-    }
-  }, 250);
-});
-*/
 
 // Intersection Observer for additional fade effects
 const observerOptions = {
@@ -899,7 +758,7 @@ function initGSAPSmoothScroll() {
     
     // Use GSAP to smoothly scroll to the section
     gsap.to(window, {
-      duration: 0.2, // Ultra-fast
+      duration: 0.2, // Standard speed for keyboard
       scrollTo: {
         y: sections[index],
         autoKill: false,
@@ -912,9 +771,32 @@ function initGSAPSmoothScroll() {
     });
   }
   
+  // Faster scroll function for touchpad/wheel
+  function scrollToSectionFast(index, isTouchpad = false) {
+    if (index < 0 || index >= sections.length || isScrolling) return;
+    
+    isScrolling = true;
+    currentSection = index;
+    
+    // Use GSAP to smoothly scroll to the section
+    gsap.to(window, {
+      duration: isTouchpad ? 0.5 : 0.2, // Smooth 0.5s for touchpad
+      scrollTo: {
+        y: sections[index],
+        autoKill: false,
+        offsetY: 0
+      },
+      ease: isTouchpad ? "power2.out" : "power3.out", // Snappier for touchpad
+      onComplete: () => {
+        isScrolling = false;
+      }
+    });
+  }
+  
   // Handle wheel events for section-by-section scrolling
   let accumulatedDelta = 0;
-  const deltaThreshold = 20; // Very responsive
+  const mouseWheelThreshold = 20; // For mouse wheel
+  const touchpadThreshold = 15; // Balanced threshold for touchpad (reduced jitter)
   
   window.addEventListener('wheel', (e) => {
     // Don't interfere if on mobile or already scrolling
@@ -928,28 +810,72 @@ function initGSAPSmoothScroll() {
     
     e.preventDefault();
     
+    // Detect if it's touchpad or mouse wheel
+    // Touchpad typically has smaller deltaY values and more frequent events
+    const isTouchpad = Math.abs(e.deltaY) < 50;
+    const threshold = isTouchpad ? touchpadThreshold : mouseWheelThreshold;
+    const timeout = isTouchpad ? 50 : 30; // Longer timeout for touchpad to reduce jitter
+    
     accumulatedDelta += e.deltaY;
     
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
-      if (Math.abs(accumulatedDelta) > deltaThreshold) {
+      if (Math.abs(accumulatedDelta) > threshold) {
         updateCurrentSection();
         
         if (accumulatedDelta > 0) {
           // Scrolling down
-          scrollToSection(currentSection + 1);
+          scrollToSectionFast(currentSection + 1, isTouchpad);
         } else {
           // Scrolling up
-          scrollToSection(currentSection - 1);
+          scrollToSectionFast(currentSection - 1, isTouchpad);
         }
         
         accumulatedDelta = 0;
       }
-    }, 30); // Faster response
+    }, timeout);
   }, { passive: false });
   
   // Update current section on scroll
   window.addEventListener('scroll', updateCurrentSection, { passive: true });
+  
+  // Keyboard navigation with arrow keys (Desktop only)
+  window.addEventListener('keydown', (e) => {
+    // Don't interfere if on mobile or already scrolling
+    if (window.innerWidth <= 768 || isScrolling) return;
+    
+    // Check if user is typing in an input field
+    const activeElement = document.activeElement;
+    if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+      return; // Don't interfere with form inputs
+    }
+    
+    // Arrow Down or Page Down
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+      e.preventDefault();
+      updateCurrentSection();
+      scrollToSection(currentSection + 1);
+    }
+    
+    // Arrow Up or Page Up
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      updateCurrentSection();
+      scrollToSection(currentSection - 1);
+    }
+    
+    // Home key - go to first section
+    if (e.key === 'Home') {
+      e.preventDefault();
+      scrollToSection(0);
+    }
+    
+    // End key - go to last section
+    if (e.key === 'End') {
+      e.preventDefault();
+      scrollToSection(sections.length - 1);
+    }
+  });
   
   // Initialize
   updateCurrentSection();
@@ -980,3 +906,176 @@ function initGSAPSmoothScroll() {
     });
   });
 }
+
+// Custom Cursor Functionality
+function initCustomCursor() {
+  // Only enable on desktop (non-touch devices)
+  if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
+    return;
+  }
+
+  const cursor = document.querySelector('.cursor');
+  const cursorDot = document.querySelector('.cursor-dot');
+  const cursorGlow = document.querySelector('.cursor-glow');
+  
+  if (!cursor || !cursorDot || !cursorGlow) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  let dotX = 0;
+  let dotY = 0;
+  let glowX = 0;
+  let glowY = 0;
+  let isVisible = true;
+
+  // Make cursor visible initially
+  cursor.style.opacity = '1';
+  cursorDot.style.opacity = '1';
+  cursorGlow.style.opacity = '0';
+
+  // Track mouse position
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Ensure cursor is visible on mouse move
+    if (!isVisible) {
+      cursor.style.opacity = '1';
+      cursorDot.style.opacity = '1';
+      isVisible = true;
+    }
+  });
+
+  // Handle page visibility change (when switching tabs)
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      // Page is visible again, reset cursor position
+      cursor.style.opacity = '1';
+      cursorDot.style.opacity = '1';
+      isVisible = true;
+    }
+  });
+
+  // Handle mouse entering the window
+  document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
+    cursorDot.style.opacity = '1';
+    isVisible = true;
+  });
+
+  // Smooth cursor animation
+  function animateCursor() {
+    // Cursor ring follows with slight delay
+    cursorX += (mouseX - cursorX) * 0.15;
+    cursorY += (mouseY - cursorY) * 0.15;
+    
+    // Dot follows faster
+    dotX += (mouseX - dotX) * 0.25;
+    dotY += (mouseY - dotY) * 0.25;
+    
+    // Glow follows slower
+    glowX += (mouseX - glowX) * 0.08;
+    glowY += (mouseY - glowY) * 0.08;
+
+    cursor.style.left = cursorX + 'px';
+    cursor.style.top = cursorY + 'px';
+    
+    cursorDot.style.left = dotX + 'px';
+    cursorDot.style.top = dotY + 'px';
+    
+    cursorGlow.style.left = glowX + 'px';
+    cursorGlow.style.top = glowY + 'px';
+
+    requestAnimationFrame(animateCursor);
+  }
+  
+  animateCursor();
+
+  // Hover effects for interactive elements
+  const interactiveElements = document.querySelectorAll(
+    'a, button, input, textarea, .tech-item, .social-icon, .contact-detail-item, .hamburger, .nav-link, .menu-link'
+  );
+
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('hover');
+      cursorDot.classList.add('hover');
+      cursorGlow.classList.add('hover');
+    });
+
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hover');
+      cursorDot.classList.remove('hover');
+      cursorGlow.classList.remove('hover');
+    });
+  });
+
+  // Click animation
+  document.addEventListener('mousedown', () => {
+    cursor.classList.add('click');
+    cursorDot.classList.add('click');
+  });
+
+  document.addEventListener('mouseup', () => {
+    cursor.classList.remove('click');
+    cursorDot.classList.remove('click');
+  });
+
+  // Create particle trail effect
+  let particles = [];
+  const maxParticles = 15;
+
+  function createParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.style.cssText = `
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(59, 130, 246, 0.6));
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      left: ${x}px;
+      top: ${y}px;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
+    `;
+    document.body.appendChild(particle);
+
+    // Animate particle
+    gsap.to(particle, {
+      opacity: 0,
+      scale: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+      onComplete: () => {
+        particle.remove();
+      }
+    });
+
+    particles.push(particle);
+    
+    // Limit particles
+    if (particles.length > maxParticles) {
+      const oldParticle = particles.shift();
+      if (oldParticle && oldParticle.parentNode) {
+        oldParticle.remove();
+      }
+    }
+  }
+
+  // Create particles on mouse move (throttled)
+  let lastParticleTime = 0;
+  document.addEventListener('mousemove', (e) => {
+    const now = Date.now();
+    if (now - lastParticleTime > 50) { // Create particle every 50ms
+      createParticle(e.clientX, e.clientY);
+      lastParticleTime = now;
+    }
+  });
+}
+
+// Initialize custom cursor
+initCustomCursor();

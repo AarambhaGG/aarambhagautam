@@ -371,8 +371,57 @@ section {
 .hero-title {
   font-size: 2rem;
   font-weight: 300;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   color: #d1d5db;
+}
+
+/* Title with underline wrapper */
+.title-with-underline {
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.title-underline {
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #a855f7, #3b82f6, transparent);
+  margin: 0.75rem auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+  animation: underline-glow 2s ease-in-out infinite;
+}
+
+@keyframes underline-glow {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+  }
+}
+
+/* About section underline */
+.about-text .title-with-underline {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.about-text .title-underline {
+  width: 50%;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Contact section underline */
+.contact-info .title-with-underline {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.contact-info .title-underline {
+  width: 40%;
+  margin: 0.5rem 0 0 0;
 }
 
 .hero-intro {
@@ -423,8 +472,15 @@ section {
   height: 300px;
 }
 
+/* Move Contact Me button higher on mobile */
+@media (max-width: 768px) {
+  .contact-cta {
+    margin-top: -2rem;
+  }
+}
+
 .scroll-down-indicator {
-  display: none;
+  display: flex;
   position: absolute;
   bottom: 2rem;
   left: 50%;
@@ -439,6 +495,27 @@ section {
 
 .scroll-down-indicator:hover {
   color: #d8b4fe;
+}
+
+.mouse-icon {
+  width: 1.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mouse-wheel {
+  animation: scroll-wheel 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll-wheel {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 0.3;
+  }
 }
 
 .scroll-down-indicator span {
@@ -461,6 +538,217 @@ section {
   50% {
     transform: translateY(25%);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Desktop: Show only mouse icon and "Scroll Down", hide arrow and mobile text */
+@media (min-width: 769px) {
+  .scroll-down-indicator .arrow-icon {
+    display: none;
+  }
+  
+  .scroll-down-indicator .scroll-text-mobile {
+    display: none;
+  }
+  
+  .scroll-down-indicator .scroll-text-desktop {
+    display: block;
+  }
+}
+
+/* Mobile: Hide scroll indicator completely */
+@media (max-width: 768px) {
+  .scroll-down-indicator {
+    display: none !important;
+  }
+  
+  .mouse-icon {
+    display: none !important;
+  }
+}
+
+/* Mobile Press Me Button */
+.mobile-press-button {
+  display: none;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #c084fc;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.mobile-button-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2));
+  border: 2px solid rgba(168, 85, 247, 0.5);
+  border-radius: 50%;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+  animation: pulse-button-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-button-icon {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(168, 85, 247, 0.6);
+    transform: scale(1.1);
+  }
+}
+
+.mobile-press-button span {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.mobile-press-button:active .mobile-button-icon {
+  transform: scale(0.9);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(59, 130, 246, 0.3));
+}
+
+/* Show Press Me button only on mobile */
+@media (max-width: 768px) {
+  .mobile-press-button {
+    display: flex;
+  }
+}
+
+/* Extra responsive sizing for smaller phones (iPhone SE, etc.) */
+@media (max-width: 480px) {
+  /* Hero section adjustments */
+  .hero-section {
+    padding-top: 2rem;
+    min-height: 100vh;
+  }
+  
+  .hero-name {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-accent-line {
+    width: 4rem;
+    margin: 0 auto 1.25rem;
+  }
+  
+  .hero-title {
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .hero-intro {
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    padding: 0 1rem;
+  }
+  
+  .contact-cta {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+    margin-top: 0;
+  }
+  
+  /* Mobile button */
+  .mobile-press-button {
+    bottom: 1.25rem;
+    gap: 0.375rem;
+  }
+  
+  .mobile-button-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+  }
+  
+  .mobile-press-button span {
+    font-size: 0.6875rem;
+  }
+  
+  /* Section spacing */
+  section {
+    padding: 3rem 1rem;
+  }
+  
+  /* Section titles */
+  .section-title {
+    font-size: 1.875rem;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+  }
+  
+  /* Title underlines - make more visible on mobile */
+  .title-underline {
+    width: 80%;
+    height: 2px;
+  }
+  
+  .about-text .title-underline {
+    width: 70%;
+    margin: 0.5rem auto 0;
+  }
+  
+  .contact-info .title-underline {
+    width: 60%;
+  }
+  
+  /* About section */
+  .about-heading {
+    font-size: 2rem;
+  }
+  
+  .about-paragraph {
+    font-size: 1rem;
+  }
+  
+  /* Tech stack */
+  .tech-grid {
+    gap: 1.75rem;
+  }
+  
+  .tech-icon {
+    width: 5rem;
+    height: 5rem;
+  }
+  
+  .tech-icon span {
+    font-size: 2rem;
+  }
+  
+  .tech-item p {
+    font-size: 0.8125rem;
+  }
+  
+  /* Contact section */
+  .contact-section {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+  }
+  
+  .contact-section .section-title {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .contact-info h3 {
+    font-size: 1.375rem;
+  }
+  
+  .contact-info > p {
+    font-size: 0.9375rem;
   }
 }
 
@@ -587,6 +875,22 @@ section {
   gap: 1.5rem;
 }
 
+/* Increase spacing on mobile */
+@media (max-width: 768px) {
+  .tech-grid {
+    gap: 3rem;
+  }
+  
+  .tech-icon {
+    width: 7rem;
+    height: 7rem;
+  }
+  
+  .tech-icon span {
+    font-size: 3rem;
+  }
+}
+
 .tech-item {
   text-align: center;
 }
@@ -702,12 +1006,23 @@ section {
 }
 
 .contact-icon.location {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.2);
+  background: rgba(168, 85, 247, 0.1);
+  border-color: rgba(168, 85, 247, 0.2);
 }
 
 .contact-icon.location svg {
-  color: #60a5fa;
+  color: #c084fc;
+}
+
+.location-link {
+  color: #c084fc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.location-link:hover {
+  color: #d8b4fe;
 }
 
 .contact-detail-item .label {
@@ -728,8 +1043,27 @@ section {
 
 .social-label {
   font-size: 0.875rem;
-  color: #9ca3af;
+  color: transparent;
+  background: linear-gradient(135deg, #a855f7, #3b82f6, #a855f7);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  animation: glow-text 3s ease-in-out infinite;
+}
+
+@keyframes glow-text {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
+    background-position: 0% center;
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 1));
+    background-position: 100% center;
+  }
 }
 
 .social-links {
@@ -971,6 +1305,24 @@ footer p {
     gap: 1rem;
   }
   
+  .tech-icon {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: 0 auto 0.75rem;
+  }
+  
+  .tech-icon span {
+    font-size: 2rem;
+  }
+  
+  .tech-icon .tailwind-text {
+    font-size: 0.625rem;
+  }
+  
+  .tech-item p {
+    font-size: 0.75rem;
+  }
+  
   .contact-wrapper {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -985,7 +1337,7 @@ footer p {
   .contact-section .section-title {
     margin-top: 0;
     margin-bottom: 1.5rem;
-    font-size: 2rem;
+    font-size: 2.75rem;
   }
   
   .contact-info h3 {
@@ -1143,5 +1495,105 @@ footer p {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom Cursor */
+* {
+  cursor: none !important;
+}
+
+body {
+  cursor: none;
+}
+
+a, button, input, textarea, .tech-item, .social-icon, .contact-detail-item {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(168, 85, 247, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.15s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #a855f7, #3b82f6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: all 0.1s ease;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.2s ease;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+/* Cursor hover states */
+.cursor.hover {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(59, 130, 246, 0.8);
+  background: rgba(168, 85, 247, 0.1);
+}
+
+.cursor-dot.hover {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #3b82f6, #a855f7);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.9);
+}
+
+.cursor-glow.hover {
+  opacity: 1;
+  width: 80px;
+  height: 80px;
+}
+
+/* Cursor click state */
+.cursor.click {
+  width: 30px;
+  height: 30px;
+  border-color: rgba(236, 72, 153, 0.9);
+}
+
+.cursor-dot.click {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  box-shadow: 0 0 20px rgba(236, 72, 153, 1);
+}
+
+/* Hide custom cursor on mobile/touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  
+  .cursor,
+  .cursor-dot,
+  .cursor-glow {
+    display: none;
   }
 }

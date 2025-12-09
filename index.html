@@ -10,12 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive-additions.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/powerglitch@latest/dist/powerglitch.min.js"></script>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-glow"></div>
+    
     <div class="grid-background"></div>
     <div class="particles"></div>
     <div class="falling-stars"></div>
@@ -58,10 +64,22 @@
             <a href="#contact" class="contact-cta">Contact Me</a>
         </div>
         <a href="#about" class="scroll-down-indicator">
-            <span>Scroll Down</span>
+            <svg class="mouse-icon" viewBox="0 0 24 40" fill="none" stroke="currentColor">
+                <rect x="6" y="2" width="12" height="20" rx="6" stroke-width="2"/>
+                <circle class="mouse-wheel" cx="12" cy="8" r="1.5" fill="currentColor"/>
+            </svg>
+            <span class="scroll-text-desktop">Scroll Down</span>
             <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+            </svg>
+        </a>
+        
+        <!-- Mobile Press Me Button -->
+        <a href="#about" class="mobile-press-button">
+            <svg class="mobile-button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
+            <span>Click Me</span>
         </a>
     </section>
 
@@ -71,7 +89,10 @@
             <h2 class="section-title">About</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3 class="about-heading">Hey! I'm <span class="highlight">Aarambha</span></h3>
+                    <div class="title-with-underline">
+                        <h3 class="about-heading">Hey! I'm <span class="highlight">Aarambha</span></h3>
+                        <div class="title-underline"></div>
+                    </div>
                     <p class="about-paragraph">A passionate video editor who loves turning ideas into engaging visuals. I've been editing since 2023—working on motion graphics, VFX, and creating clean, impactful edits that tell a story.</p>
                     <p class="about-paragraph">Alongside video editing, I'm also learning web development and exploring the world of 3D with Blender. I enjoy challenging myself with new skills, building small projects, and experimenting with creative ideas.</p>
                 </div>
@@ -147,7 +168,10 @@
             <h2 class="section-title">Contact</h2>
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <h3>Let's Connect</h3>
+                    <div class="title-with-underline">
+                        <h3>Let's Connect</h3>
+                        <div class="title-underline"></div>
+                    </div>
                     <p>Have a project in mind or just want to chat? Feel free to reach out. I'm always open to discussing new opportunities and creative collaborations.</p>
                     
                     <div class="contact-details">
@@ -159,7 +183,7 @@
                             </div>
                             <div>
                                 <p class="label">Email</p>
-                                <a href="mailto:Aarambhagautambsccsit2081@lcc.edu.np">Aarambhagautambsccsit2081@lcc.edu.np</a>
+                                <a href="mailto:aarambhagautambsccsit2081@lcc.edu.np">aarambhagautambsccsit2081@lcc.edu.np</a>
                             </div>
                         </div>
                         
@@ -172,7 +196,7 @@
                             </div>
                             <div>
                                 <p class="label">Location</p>
-                                <p>Available Worldwide</p>
+                                <a href="#" class="location-link">Available Worldwide</a>
                             </div>
                         </div>
                     </div>

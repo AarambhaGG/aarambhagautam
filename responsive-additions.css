@@ -1,0 +1,193 @@
+/* ============================================
+   COMPREHENSIVE RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Extra Small Devices (320px-374px) - Very small phones */
+@media (max-width: 374px) {
+  .hero-name {
+    font-size: 2.25rem !important;
+  }
+  
+  .hero-title {
+    font-size: 1rem !important;
+  }
+  
+  .hero-intro {
+    font-size: 0.875rem !important;
+    padding: 0 0.5rem !important;
+  }
+  
+  .contact-cta {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .mobile-button-icon {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+  
+  .section-title {
+    font-size: 1.75rem !important;
+  }
+  
+  .tech-icon {
+    width: 4.5rem !important;
+    height: 4.5rem !important;
+  }
+  
+  .tech-icon span {
+    font-size: 1.75rem !important;
+  }
+  
+  .tech-grid {
+    gap: 1.5rem !important;
+  }
+}
+
+/* Small Phones (375px-414px) - iPhone SE, iPhone 6/7/8 */
+@media (min-width: 375px) and (max-width: 414px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  
+  .hero-section {
+    padding-top: 2.5rem;
+  }
+  
+  section {
+    padding: 3.5rem 1.25rem;
+  }
+}
+
+/* Medium Phones (415px-480px) - Larger phones */
+@media (min-width: 415px) and (max-width: 480px) {
+  .hero-name {
+    font-size: 2.75rem;
+  }
+  
+  .hero-title {
+    font-size: 1.25rem;
+  }
+  
+  .tech-icon {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+/* Tablets Portrait (481px-768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-name {
+    font-size: 4rem;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-intro {
+    font-size: 1.125rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .tech-icon {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+  
+  .tech-icon span {
+    font-size: 2.75rem;
+  }
+  
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .mobile-press-button {
+    display: none;
+  }
+  
+  .scroll-down-indicator {
+    display: flex !important;
+  }
+}
+
+/* Tablets Landscape & Small Desktops (769px-1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 960px;
+  }
+  
+  .hero-name {
+    font-size: 5rem;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  .about-content {
+    gap: 3rem;
+  }
+}
+
+/* Large Desktops (1025px+) */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1280px;
+  }
+  
+  .hero-name {
+    font-size: 6rem;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Prevent horizontal scroll on all devices */
+* {
+  max-width: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fluid typography for better scaling */
+@media (min-width: 320px) {
+  html {
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+  }
+}
+
+/* Ensure touch targets are minimum 44px */
+@media (max-width: 768px) {
+  button,
+  a.contact-cta,
+  .mobile-press-button,
+  .social-icon,
+  .tech-item {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
