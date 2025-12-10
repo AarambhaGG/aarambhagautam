@@ -7,41 +7,75 @@
   .hero-name {
     font-size: 2.25rem !important;
   }
-  
+
   .hero-title {
     font-size: 1rem !important;
   }
-  
+
   .hero-intro {
     font-size: 0.875rem !important;
     padding: 0 0.5rem !important;
   }
-  
+
   .contact-cta {
     padding: 0.5rem 1rem !important;
     font-size: 0.75rem !important;
   }
-  
+
   .mobile-button-icon {
     width: 2.25rem !important;
     height: 2.25rem !important;
   }
-  
+
   .section-title {
     font-size: 1.75rem !important;
   }
-  
+
+  /* Tech Stack Icons - Extra Small */
   .tech-icon {
-    width: 4.5rem !important;
-    height: 4.5rem !important;
+    width: 3.5rem !important;
+    height: 3.5rem !important;
   }
-  
+
   .tech-icon span {
     font-size: 1.75rem !important;
   }
-  
+
+  .tech-icon .tailwind-text {
+    font-size: 0.5rem !important;
+  }
+
   .tech-grid {
-    gap: 1.5rem !important;
+    column-gap: 0.75rem !important;
+    row-gap: 1.25rem !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .tech-item p {
+    font-size: 0.7rem !important;
+  }
+
+  /* Contact Icons - Extra Small */
+  .contact-icon {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    min-width: 1.75rem !important;
+  }
+
+  .contact-icon svg {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  /* Social Icons - Extra Small */
+  .social-icon {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+
+  .social-icon svg {
+    width: 1rem !important;
+    height: 1rem !important;
   }
 }
 
@@ -50,13 +84,53 @@
   .container {
     padding: 0 1.25rem;
   }
-  
+
   .hero-section {
     padding-top: 2.5rem;
   }
-  
+
   section {
     padding: 3.5rem 1.25rem;
+  }
+
+  /* Tech Stack Icons - Small Phones */
+  .tech-icon {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+
+  .tech-icon span {
+    font-size: 2rem !important;
+  }
+
+  .tech-icon .tailwind-text {
+    font-size: 0.6rem !important;
+  }
+
+  .tech-item p {
+    font-size: 0.8rem !important;
+  }
+
+  /* Contact Icons - Small Phones */
+  .contact-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
+  .contact-icon svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* Social Icons - Small Phones */
+  .social-icon {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  .social-icon svg {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
   }
 }
 
@@ -65,14 +139,45 @@
   .hero-name {
     font-size: 2.75rem;
   }
-  
+
   .hero-title {
     font-size: 1.25rem;
   }
-  
+
+  /* Tech Stack Icons - Medium Phones */
   .tech-icon {
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 5.5rem !important;
+    height: 5.5rem !important;
+  }
+
+  .tech-icon span {
+    font-size: 2.25rem !important;
+  }
+
+  .tech-icon .tailwind-text {
+    font-size: 0.65rem !important;
+  }
+
+  /* Contact Icons - Medium Phones */
+  .contact-icon {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+
+  .contact-icon svg {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+  }
+
+  /* Social Icons - Medium Phones */
+  .social-icon {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+
+  .social-icon svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
   }
 }
 
@@ -81,42 +186,73 @@
   .hero-name {
     font-size: 4rem;
   }
-  
+
   .hero-title {
     font-size: 1.5rem;
   }
-  
+
   .hero-intro {
     font-size: 1.125rem;
   }
-  
+
   .section-title {
     font-size: 2.5rem;
   }
-  
+
+  /* Tech Stack Icons - Tablets */
   .tech-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2.5rem !important;
   }
-  
+
   .tech-icon {
-    width: 6.5rem;
-    height: 6.5rem;
+    width: 6.5rem !important;
+    height: 6.5rem !important;
   }
-  
+
   .tech-icon span {
-    font-size: 2.75rem;
+    font-size: 2.75rem !important;
   }
-  
+
+  .tech-icon .tailwind-text {
+    font-size: 0.7rem !important;
+  }
+
+  .tech-item p {
+    font-size: 0.875rem !important;
+  }
+
+  /* Contact Icons - Tablets */
+  .contact-icon {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+
+  .contact-icon svg {
+    width: 1.375rem !important;
+    height: 1.375rem !important;
+  }
+
+  /* Social Icons - Tablets */
+  .social-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+
+  .social-icon svg {
+    width: 1.375rem !important;
+    height: 1.375rem !important;
+  }
+
   .contact-wrapper {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  
+
   .mobile-press-button {
     display: none;
   }
-  
+
   .scroll-down-indicator {
     display: flex !important;
   }
@@ -127,16 +263,52 @@
   .container {
     max-width: 960px;
   }
-  
+
   .hero-name {
     font-size: 5rem;
   }
-  
+
+  /* Tech Stack Icons - Small Desktop */
   .tech-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2rem !important;
   }
-  
+
+  .tech-icon {
+    width: 5.5rem !important;
+    height: 5.5rem !important;
+  }
+
+  .tech-icon span {
+    font-size: 2.5rem !important;
+  }
+
+  .tech-icon .tailwind-text {
+    font-size: 0.7rem !important;
+  }
+
+  /* Contact Icons - Small Desktop */
+  .contact-icon {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+
+  .contact-icon svg {
+    width: 1.375rem !important;
+    height: 1.375rem !important;
+  }
+
+  /* Social Icons - Small Desktop */
+  .social-icon {
+    width: 3.25rem !important;
+    height: 3.25rem !important;
+  }
+
+  .social-icon svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
   .about-content {
     gap: 3rem;
   }
@@ -147,13 +319,50 @@
   .container {
     max-width: 1280px;
   }
-  
+
   .hero-name {
     font-size: 6rem;
   }
-  
+
+  /* Tech Stack Icons - Large Desktop */
   .tech-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 3rem !important;
+  }
+
+  .tech-icon {
+    width: 6rem !important;
+    height: 6rem !important;
+  }
+
+  .tech-icon span {
+    font-size: 2.5rem !important;
+  }
+
+  .tech-icon .tailwind-text {
+    font-size: 0.75rem !important;
+  }
+
+  /* Contact Icons - Large Desktop */
+  .contact-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+
+  .contact-icon svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  /* Social Icons - Large Desktop */
+  .social-icon {
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+  }
+
+  .social-icon svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
   }
 }
 
@@ -162,13 +371,33 @@
   max-width: 100%;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
 }
 
 /* Ensure images are responsive */
 img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure all icons remain visible */
+.tech-icon,
+.contact-icon,
+.social-icon,
+.mobile-button-icon,
+.mouse-icon,
+.arrow-icon {
+  flex-shrink: 0;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure SVG icons scale properly */
+svg {
   max-width: 100%;
   height: auto;
 }
@@ -180,7 +409,7 @@ img {
   }
 }
 
-/* Ensure touch targets are minimum 44px */
+/* Ensure touch targets are minimum 44px on mobile */
 @media (max-width: 768px) {
   button,
   a.contact-cta,
@@ -189,5 +418,21 @@ img {
   .tech-item {
     min-height: 44px;
     min-width: 44px;
+  }
+
+  /* Ensure icons don't shrink below minimum size */
+  .tech-icon {
+    min-width: 4rem;
+    min-height: 4rem;
+  }
+
+  .contact-icon {
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+  }
+
+  .social-icon {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
   }
 }
