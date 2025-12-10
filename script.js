@@ -16,9 +16,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function initAnimations() {
-
   const isMobile = window.innerWidth <= 768;
-  
+
   // Hero Section Animations
   const heroTimeline = gsap.timeline();
 
@@ -74,7 +73,6 @@ function initAnimations() {
       duration: 0.1,
       ease: "none",
     });
-
 
   // Enhanced Parallax effects on hero - Desktop only
   if (!isMobile) {
@@ -258,8 +256,6 @@ function initAnimations() {
     });
   }
 
-
-
   // Contact form fields animation - ensure they stay interactive
   gsap.from(
     "#contact-form input, #contact-form textarea, #contact-form button",
@@ -301,7 +297,6 @@ function initAnimations() {
     },
   });
 
-
   gsap.from(".contact-detail-item", {
     opacity: 0,
     x: -30,
@@ -315,7 +310,7 @@ function initAnimations() {
       once: true,
     },
   });
-  
+
   // Ensure contact detail items stay visible
   gsap.set(".contact-detail-item", { opacity: 1, clearProps: "x" });
 
@@ -333,7 +328,7 @@ function initAnimations() {
       once: true,
     },
   });
-  
+
   // Ensure social icons stay visible
   gsap.set(".social-icon", { opacity: 1, clearProps: "scale" });
 
@@ -364,8 +359,6 @@ function initAnimations() {
       });
     }
   });
-
-
 }
 
 // Create additional particles dynamically
@@ -454,14 +447,17 @@ function initForm() {
           method: "POST",
           body: new FormData(form),
           headers: {
-            'Accept': 'application/json'
-          }
+            Accept: "application/json",
+          },
         });
 
         if (response.ok) {
-          showFormStatus("Message sent successfully! I'll get back to you soon.", "success");
+          showFormStatus(
+            "Message sent successfully! I'll get back to you soon.",
+            "success"
+          );
           form.reset();
-          
+
           // Animate button
           gsap.to(button, {
             scale: 0.95,
@@ -471,10 +467,16 @@ function initForm() {
             ease: "power2.inOut",
           });
         } else {
-          showFormStatus("Oops! There was a problem sending your message.", "error");
+          showFormStatus(
+            "Oops! There was a problem sending your message.",
+            "error"
+          );
         }
       } catch (error) {
-        showFormStatus("Oops! There was a problem sending your message.", "error");
+        showFormStatus(
+          "Oops! There was a problem sending your message.",
+          "error"
+        );
       } finally {
         // Re-enable submit button
         button.disabled = false;
@@ -490,7 +492,7 @@ function showFormStatus(message, type) {
   if (statusElement) {
     statusElement.textContent = message;
     statusElement.style.color = type === "success" ? "#4ade80" : "#f87171";
-    
+
     // Clear message after 5 seconds
     setTimeout(() => {
       statusElement.textContent = "";
@@ -560,7 +562,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-
 // Intersection Observer for additional fade effects
 const observerOptions = {
   threshold: 0.1,
@@ -601,33 +602,33 @@ document.addEventListener("mousemove", (e) => {
 
 // Hamburger Menu Functionality
 function initHamburgerMenu() {
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuLinks = document.querySelectorAll('.menu-link');
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuLinks = document.querySelectorAll(".menu-link");
   let isOpen = false;
 
   function toggleMenu() {
     isOpen = !isOpen;
-    
+
     if (isOpen) {
       // Open menu
-      mobileMenu.style.opacity = '1';
-      mobileMenu.style.visibility = 'visible';
-      hamburger.classList.add('active');
+      mobileMenu.style.opacity = "1";
+      mobileMenu.style.visibility = "visible";
+      hamburger.classList.add("active");
     } else {
       // Close menu
-      mobileMenu.style.opacity = '0';
-      mobileMenu.style.visibility = 'invisible';
-      hamburger.classList.remove('active');
+      mobileMenu.style.opacity = "0";
+      mobileMenu.style.visibility = "invisible";
+      hamburger.classList.remove("active");
     }
   }
 
   // Toggle menu on hamburger click
-  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener("click", toggleMenu);
 
   // Close menu when clicking a link
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
       if (isOpen) {
         toggleMenu();
       }
@@ -637,24 +638,24 @@ function initHamburgerMenu() {
 
 // Desktop Navbar Auto-Hide Functionality
 function initDesktopNavbar() {
-  const navbar = document.getElementById('desktop-navbar');
+  const navbar = document.getElementById("desktop-navbar");
   if (!navbar) return; // Exit if navbar doesn't exist (mobile)
-  
+
   let hideTimeout;
   let isHovering = false;
 
   function hideNavbar() {
     if (!isHovering) {
-      navbar.style.transform = 'translateY(-100%)';
+      navbar.style.transform = "translateY(-100%)";
     }
   }
 
   function showNavbar() {
-    navbar.style.transform = 'translateY(0)';
+    navbar.style.transform = "translateY(0)";
   }
 
   // Show navbar when mouse is at top of screen
-  document.addEventListener('mousemove', (e) => {
+  document.addEventListener("mousemove", (e) => {
     clearTimeout(hideTimeout);
 
     // Show navbar if mouse is in top 100px
@@ -667,12 +668,12 @@ function initDesktopNavbar() {
   });
 
   // Prevent hiding when hovering over navbar
-  navbar.addEventListener('mouseenter', () => {
+  navbar.addEventListener("mouseenter", () => {
     isHovering = true;
     showNavbar();
   });
 
-  navbar.addEventListener('mouseleave', () => {
+  navbar.addEventListener("mouseleave", () => {
     isHovering = false;
     hideTimeout = setTimeout(hideNavbar, 2000);
   });
@@ -684,20 +685,22 @@ function initDesktopNavbar() {
 
 // Scroll Progress Bar
 function initScrollProgress() {
-  const progressBar = document.getElementById('scroll-progress');
-  
-  window.addEventListener('scroll', () => {
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progressBar = document.getElementById("scroll-progress");
+
+  window.addEventListener("scroll", () => {
+    const windowHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
     const scrolled = (window.scrollY / windowHeight) * 100;
-    progressBar.style.width = scrolled + '%';
+    progressBar.style.width = scrolled + "%";
   });
 }
 
 // PowerGlitch Effect for Hero Name
 function initGlitch() {
-  if (typeof PowerGlitch !== 'undefined') {
-    PowerGlitch.glitch('.hero-name', {
-      playMode: 'always',
+  if (typeof PowerGlitch !== "undefined") {
+    PowerGlitch.glitch(".hero-name", {
+      playMode: "always",
       createContainers: true,
       hideOverflow: false,
       timing: {
@@ -729,164 +732,172 @@ function initGlitch() {
 function initGSAPSmoothScroll() {
   // Only enable on desktop
   if (window.innerWidth <= 768) return;
-  
-  const sections = document.querySelectorAll('section, footer');
+
+  const sections = document.querySelectorAll("section, footer");
   let currentSection = 0;
   let isScrolling = false;
   let scrollTimeout;
-  
+
   // Detect which section is currently in view
   function updateCurrentSection() {
     const scrollPosition = window.scrollY + window.innerHeight / 2;
-    
+
     sections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
       const sectionBottom = sectionTop + section.offsetHeight;
-      
+
       if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
         currentSection = index;
       }
     });
   }
-  
+
   // Smooth scroll to section using GSAP
   function scrollToSection(index) {
     if (index < 0 || index >= sections.length || isScrolling) return;
-    
+
     isScrolling = true;
     currentSection = index;
-    
+
     // Use GSAP to smoothly scroll to the section
     gsap.to(window, {
       duration: 0.2, // Standard speed for keyboard
       scrollTo: {
         y: sections[index],
         autoKill: false,
-        offsetY: 0
+        offsetY: 0,
       },
       ease: "power3.out", // Smoother deceleration
       onComplete: () => {
         isScrolling = false;
-      }
+      },
     });
   }
-  
+
   // Faster scroll function for touchpad/wheel
   function scrollToSectionFast(index, isTouchpad = false) {
     if (index < 0 || index >= sections.length || isScrolling) return;
-    
+
     isScrolling = true;
     currentSection = index;
-    
+
     // Use GSAP to smoothly scroll to the section
     gsap.to(window, {
       duration: isTouchpad ? 0.5 : 0.2, // Smooth 0.5s for touchpad
       scrollTo: {
         y: sections[index],
         autoKill: false,
-        offsetY: 0
+        offsetY: 0,
       },
       ease: isTouchpad ? "power2.out" : "power3.out", // Snappier for touchpad
       onComplete: () => {
         isScrolling = false;
-      }
+      },
     });
   }
-  
+
   // Handle wheel events for section-by-section scrolling
   let accumulatedDelta = 0;
   const mouseWheelThreshold = 20; // For mouse wheel
   const touchpadThreshold = 15; // Balanced threshold for touchpad (reduced jitter)
-  
-  window.addEventListener('wheel', (e) => {
-    // Don't interfere if on mobile or already scrolling
-    if (window.innerWidth <= 768 || isScrolling) return;
-    
-    // Check if scrolling inside contact form area
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm && contactForm.contains(e.target)) {
-      return; // Allow normal scrolling in form
-    }
-    
-    e.preventDefault();
-    
-    // Detect if it's touchpad or mouse wheel
-    // Touchpad typically has smaller deltaY values and more frequent events
-    const isTouchpad = Math.abs(e.deltaY) < 50;
-    const threshold = isTouchpad ? touchpadThreshold : mouseWheelThreshold;
-    const timeout = isTouchpad ? 50 : 30; // Longer timeout for touchpad to reduce jitter
-    
-    accumulatedDelta += e.deltaY;
-    
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      if (Math.abs(accumulatedDelta) > threshold) {
-        updateCurrentSection();
-        
-        if (accumulatedDelta > 0) {
-          // Scrolling down
-          scrollToSectionFast(currentSection + 1, isTouchpad);
-        } else {
-          // Scrolling up
-          scrollToSectionFast(currentSection - 1, isTouchpad);
-        }
-        
-        accumulatedDelta = 0;
+
+  window.addEventListener(
+    "wheel",
+    (e) => {
+      // Don't interfere if on mobile or already scrolling
+      if (window.innerWidth <= 768 || isScrolling) return;
+
+      // Check if scrolling inside contact form area
+      const contactForm = document.getElementById("contact-form");
+      if (contactForm && contactForm.contains(e.target)) {
+        return; // Allow normal scrolling in form
       }
-    }, timeout);
-  }, { passive: false });
-  
+
+      e.preventDefault();
+
+      // Detect if it's touchpad or mouse wheel
+      // Touchpad typically has smaller deltaY values and more frequent events
+      const isTouchpad = Math.abs(e.deltaY) < 50;
+      const threshold = isTouchpad ? touchpadThreshold : mouseWheelThreshold;
+      const timeout = isTouchpad ? 50 : 30; // Longer timeout for touchpad to reduce jitter
+
+      accumulatedDelta += e.deltaY;
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if (Math.abs(accumulatedDelta) > threshold) {
+          updateCurrentSection();
+
+          if (accumulatedDelta > 0) {
+            // Scrolling down
+            scrollToSectionFast(currentSection + 1, isTouchpad);
+          } else {
+            // Scrolling up
+            scrollToSectionFast(currentSection - 1, isTouchpad);
+          }
+
+          accumulatedDelta = 0;
+        }
+      }, timeout);
+    },
+    { passive: false }
+  );
+
   // Update current section on scroll
-  window.addEventListener('scroll', updateCurrentSection, { passive: true });
-  
+  window.addEventListener("scroll", updateCurrentSection, { passive: true });
+
   // Keyboard navigation with arrow keys (Desktop only)
-  window.addEventListener('keydown', (e) => {
+  window.addEventListener("keydown", (e) => {
     // Don't interfere if on mobile or already scrolling
     if (window.innerWidth <= 768 || isScrolling) return;
-    
+
     // Check if user is typing in an input field
     const activeElement = document.activeElement;
-    if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+    if (
+      activeElement &&
+      (activeElement.tagName === "INPUT" ||
+        activeElement.tagName === "TEXTAREA")
+    ) {
       return; // Don't interfere with form inputs
     }
-    
+
     // Arrow Down or Page Down
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+    if (e.key === "ArrowDown" || e.key === "PageDown") {
       e.preventDefault();
       updateCurrentSection();
       scrollToSection(currentSection + 1);
     }
-    
+
     // Arrow Up or Page Up
-    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    if (e.key === "ArrowUp" || e.key === "PageUp") {
       e.preventDefault();
       updateCurrentSection();
       scrollToSection(currentSection - 1);
     }
-    
+
     // Home key - go to first section
-    if (e.key === 'Home') {
+    if (e.key === "Home") {
       e.preventDefault();
       scrollToSection(0);
     }
-    
+
     // End key - go to last section
-    if (e.key === 'End') {
+    if (e.key === "End") {
       e.preventDefault();
       scrollToSection(sections.length - 1);
     }
   });
-  
+
   // Initialize
   updateCurrentSection();
-  
+
   // Handle anchor link clicks with GSAP smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
+      const targetId = this.getAttribute("href");
       const target = document.querySelector(targetId);
-      
+
       if (target) {
         isScrolling = true;
         gsap.to(window, {
@@ -894,13 +905,13 @@ function initGSAPSmoothScroll() {
           scrollTo: {
             y: target,
             autoKill: false,
-            offsetY: 0
+            offsetY: 0,
           },
           ease: "power3.out",
           onComplete: () => {
             isScrolling = false;
             updateCurrentSection();
-          }
+          },
         });
       }
     });
@@ -914,10 +925,10 @@ function initCustomCursor() {
     return;
   }
 
-  const cursor = document.querySelector('.cursor');
-  const cursorDot = document.querySelector('.cursor-dot');
-  const cursorGlow = document.querySelector('.cursor-glow');
-  
+  const cursor = document.querySelector(".cursor");
+  const cursorDot = document.querySelector(".cursor-dot");
+  const cursorGlow = document.querySelector(".cursor-glow");
+
   if (!cursor || !cursorDot || !cursorGlow) return;
 
   let mouseX = 0;
@@ -931,37 +942,37 @@ function initCustomCursor() {
   let isVisible = true;
 
   // Make cursor visible initially
-  cursor.style.opacity = '1';
-  cursorDot.style.opacity = '1';
-  cursorGlow.style.opacity = '0';
+  cursor.style.opacity = "1";
+  cursorDot.style.opacity = "1";
+  cursorGlow.style.opacity = "0";
 
   // Track mouse position
-  document.addEventListener('mousemove', (e) => {
+  document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    
+
     // Ensure cursor is visible on mouse move
     if (!isVisible) {
-      cursor.style.opacity = '1';
-      cursorDot.style.opacity = '1';
+      cursor.style.opacity = "1";
+      cursorDot.style.opacity = "1";
       isVisible = true;
     }
   });
 
   // Handle page visibility change (when switching tabs)
-  document.addEventListener('visibilitychange', () => {
+  document.addEventListener("visibilitychange", () => {
     if (!document.hidden) {
       // Page is visible again, reset cursor position
-      cursor.style.opacity = '1';
-      cursorDot.style.opacity = '1';
+      cursor.style.opacity = "1";
+      cursorDot.style.opacity = "1";
       isVisible = true;
     }
   });
 
   // Handle mouse entering the window
-  document.addEventListener('mouseenter', () => {
-    cursor.style.opacity = '1';
-    cursorDot.style.opacity = '1';
+  document.addEventListener("mouseenter", () => {
+    cursor.style.opacity = "1";
+    cursorDot.style.opacity = "1";
     isVisible = true;
   });
 
@@ -970,57 +981,57 @@ function initCustomCursor() {
     // Cursor ring follows with slight delay
     cursorX += (mouseX - cursorX) * 0.15;
     cursorY += (mouseY - cursorY) * 0.15;
-    
+
     // Dot follows faster
     dotX += (mouseX - dotX) * 0.25;
     dotY += (mouseY - dotY) * 0.25;
-    
+
     // Glow follows slower
     glowX += (mouseX - glowX) * 0.08;
     glowY += (mouseY - glowY) * 0.08;
 
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-    
-    cursorDot.style.left = dotX + 'px';
-    cursorDot.style.top = dotY + 'px';
-    
-    cursorGlow.style.left = glowX + 'px';
-    cursorGlow.style.top = glowY + 'px';
+    cursor.style.left = cursorX + "px";
+    cursor.style.top = cursorY + "px";
+
+    cursorDot.style.left = dotX + "px";
+    cursorDot.style.top = dotY + "px";
+
+    cursorGlow.style.left = glowX + "px";
+    cursorGlow.style.top = glowY + "px";
 
     requestAnimationFrame(animateCursor);
   }
-  
+
   animateCursor();
 
   // Hover effects for interactive elements
   const interactiveElements = document.querySelectorAll(
-    'a, button, input, textarea, .tech-item, .social-icon, .contact-detail-item, .hamburger, .nav-link, .menu-link'
+    "a, button, input, textarea, .tech-item, .social-icon, .contact-detail-item, .hamburger, .nav-link, .menu-link"
   );
 
-  interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.classList.add('hover');
-      cursorDot.classList.add('hover');
-      cursorGlow.classList.add('hover');
+  interactiveElements.forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("hover");
+      cursorDot.classList.add("hover");
+      cursorGlow.classList.add("hover");
     });
 
-    el.addEventListener('mouseleave', () => {
-      cursor.classList.remove('hover');
-      cursorDot.classList.remove('hover');
-      cursorGlow.classList.remove('hover');
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("hover");
+      cursorDot.classList.remove("hover");
+      cursorGlow.classList.remove("hover");
     });
   });
 
   // Click animation
-  document.addEventListener('mousedown', () => {
-    cursor.classList.add('click');
-    cursorDot.classList.add('click');
+  document.addEventListener("mousedown", () => {
+    cursor.classList.add("click");
+    cursorDot.classList.add("click");
   });
 
-  document.addEventListener('mouseup', () => {
-    cursor.classList.remove('click');
-    cursorDot.classList.remove('click');
+  document.addEventListener("mouseup", () => {
+    cursor.classList.remove("click");
+    cursorDot.classList.remove("click");
   });
 
   // Create particle trail effect
@@ -1028,7 +1039,7 @@ function initCustomCursor() {
   const maxParticles = 15;
 
   function createParticle(x, y) {
-    const particle = document.createElement('div');
+    const particle = document.createElement("div");
     particle.style.cssText = `
       position: fixed;
       width: 4px;
@@ -1049,14 +1060,14 @@ function initCustomCursor() {
       opacity: 0,
       scale: 0,
       duration: 0.8,
-      ease: 'power2.out',
+      ease: "power2.out",
       onComplete: () => {
         particle.remove();
-      }
+      },
     });
 
     particles.push(particle);
-    
+
     // Limit particles
     if (particles.length > maxParticles) {
       const oldParticle = particles.shift();
@@ -1068,9 +1079,10 @@ function initCustomCursor() {
 
   // Create particles on mouse move (throttled)
   let lastParticleTime = 0;
-  document.addEventListener('mousemove', (e) => {
+  document.addEventListener("mousemove", (e) => {
     const now = Date.now();
-    if (now - lastParticleTime > 50) { // Create particle every 50ms
+    if (now - lastParticleTime > 50) {
+      // Create particle every 50ms
       createParticle(e.clientX, e.clientY);
       lastParticleTime = now;
     }
@@ -1079,3 +1091,23 @@ function initCustomCursor() {
 
 // Initialize custom cursor
 initCustomCursor();
+
+// Disable right-click on all images to prevent downloading
+function disableImageRightClick() {
+  const images = document.querySelectorAll("img");
+  images.forEach((img) => {
+    img.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // Also prevent dragging images
+    img.addEventListener("dragstart", (e) => {
+      e.preventDefault();
+      return false;
+    });
+  });
+}
+
+// Initialize image protection
+disableImageRightClick();
