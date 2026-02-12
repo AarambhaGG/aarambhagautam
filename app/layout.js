@@ -5,6 +5,9 @@ export const metadata = {
   description: 'Backend Developer specializing in Django, AI/ML, and building solid web applications',
   keywords: 'Backend Developer, Django, Python, AI/ML, Next.js, Portfolio',
   authors: [{ name: 'Aarambha Gautam' }],
+  icons: {
+    icon: '/gradbear.png',
+  },
   openGraph: {
     title: 'Aarambha Gautam | Backend Developer',
     description: 'Backend Developer specializing in Django, AI/ML, and building solid web applications',
@@ -20,7 +23,6 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" 
           rel="stylesheet" 
         />
-        <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body>{children}</body>
     </html>

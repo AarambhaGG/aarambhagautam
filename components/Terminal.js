@@ -3,28 +3,22 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { processCommand } from '@/lib/commandProcessor';
 import { handleTabCompletion } from '@/lib/tabCompletion';
-import { BANNER, MOBILE_MESSAGE } from '@/lib/constants';
+import { BANNER } from '@/lib/constants';
 
 export default function Terminal() {
   const [output, setOutput] = useState([]);
   const [currentCommand, setCurrentCommand] = useState('');
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const [isMobile, setIsMobile] = useState(false);
   const [currentDir, setCurrentDir] = useState('~');
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
   const inputRef = useRef(null);
   const outputRef = useRef(null);
   const bottomRef = useRef(null);
 
   // Initialize on mount
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
     // Show banner on load
     setOutput([{ type: 'banner', content: BANNER }]);
 
@@ -40,8 +34,6 @@ export default function Terminal() {
 
     // Focus input
     inputRef.current?.focus();
-
-    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Auto-scroll to bottom on new output
@@ -186,65 +178,74 @@ export default function Terminal() {
     inputRef.current?.focus();
   }, []);
 
-  // Mobile message
-  if (isMobile) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-8 text-center bg-[#0a0e14]">
-        <div dangerouslySetInnerHTML={{ __html: MOBILE_MESSAGE }} />
-      </div>
-    );
-  }
-
   return (
-    <div className="terminal" onClick={handleTerminalClick}>
-      <div className="terminal-output" ref={outputRef}>
-        {output.map((line, index) => (
-          <div key={index} className="output-line">
-            {line.type === 'command' && (
-              <div className="command-line">
-                <span className="prompt">nayan@portfolio</span>
-                <span className="prompt-separator">:</span>
-                <span className="prompt-path">{line.dir || '~'}</span>
-                <span className="prompt-symbol">$ </span>
-                <span className="command-text">{line.content}</span>
-              </div>
-            )}
-            {line.type === 'result' && (
-              <div 
-                className="result-content"
-                dangerouslySetInnerHTML={{ __html: line.content }} 
-              />
-            )}
-            {line.type === 'banner' && (
-              <pre className="banner" dangerouslySetInnerHTML={{ __html: line.content }} />
-            )}
-            {line.type === 'suggestion' && (
-              <div className="suggestion-line">{line.content}</div>
-            )}
-          </div>
-        ))}
-        <div ref={bottomRef} />
+    <div className={`terminal-window ${isMinimized ? 'minimized' : ''} ${isMaximized ? 'maximized' : ''}`}>
+      {/* Title Bar */}
+      <div className="terminal-titlebar">
+        <div className="window-controls">
+          <button 
+            className="window-btn maximize" 
+            onClick={() => {
+              setIsMaximized(!isMaximized);
+              setIsMinimized(false);
+            }}
+            title={isMaximized ? "Restore" : "Maximize"}
+          />
+        </div>
+        <div className="terminal-title">nayan@portfolio: ~</div>
+        <div className="titlebar-spacer"></div>
       </div>
 
-      <form onSubmit={handleSubmit} className="terminal-input">
-        <span className="prompt">nayan@portfolio</span>
-        <span className="prompt-separator">:</span>
-        <span className="prompt-path">{currentDir}</span>
-        <span className="prompt-symbol">$ </span>
-        <input
-          ref={inputRef}
-          type="text"
-          value={currentCommand}
-          onChange={(e) => setCurrentCommand(e.target.value)}
-          onKeyDown={handleKeyDown}
-          autoFocus
-          spellCheck="false"
-          autoComplete="off"
-          autoCapitalize="off"
-          aria-label="Terminal input"
-        />
-        <span className="cursor" aria-hidden="true"></span>
-      </form>
+      {/* Terminal Content */}
+      <div className={`terminal ${isMinimized ? 'hidden' : ''}`} onClick={handleTerminalClick}>
+        <div className="terminal-output" ref={outputRef}>
+          {output.map((line, index) => (
+            <div key={index} className="output-line">
+              {line.type === 'command' && (
+                <div className="command-line">
+                  <span className="prompt">nayan@portfolio</span>
+                  <span className="prompt-separator">:</span>
+                  <span className="prompt-path">{line.dir || '~'}</span>
+                  <span className="prompt-symbol">$ </span>
+                  <span className="command-text">{line.content}</span>
+                </div>
+              )}
+              {line.type === 'result' && (
+                <div 
+                  className="result-content"
+                  dangerouslySetInnerHTML={{ __html: line.content }} 
+                />
+              )}
+              {line.type === 'banner' && (
+                <pre className="banner" dangerouslySetInnerHTML={{ __html: line.content }} />
+              )}
+              {line.type === 'suggestion' && (
+                <div className="suggestion-line">{line.content}</div>
+              )}
+            </div>
+          ))}
+          <div ref={bottomRef} />
+        </div>
+
+        <form onSubmit={handleSubmit} className="terminal-input">
+          <span className="prompt">nayan@portfolio</span>
+          <span className="prompt-separator">:</span>
+          <span className="prompt-path">{currentDir}</span>
+          <span className="prompt-symbol">$ </span>
+          <input
+            ref={inputRef}
+            type="text"
+            value={currentCommand}
+            onChange={(e) => setCurrentCommand(e.target.value)}
+            onKeyDown={handleKeyDown}
+            autoFocus
+            spellCheck="false"
+            autoComplete="off"
+            autoCapitalize="off"
+            aria-label="Terminal input"
+          />
+        </form>
+      </div>
     </div>
   );
 }
