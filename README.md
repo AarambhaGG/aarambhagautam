@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aarambh Gautam - Portfolio
 
-## Getting Started
+An interactive terminal-based portfolio built with Next.js, featuring a command-line interface with custom commands and tab completion.
 
-First, run the development server:
+## Overview
+
+This portfolio project showcases a modern, interactive way to explore my work and experience through a simulated terminal interface. Users can interact with various commands to learn about my projects, skills, and background.
+
+## Features
+
+- **Interactive Terminal**: Full command-line interface with command history
+- **Custom Commands**: Various commands to navigate and display portfolio information
+- **Tab Completion**: Smart tab completion for command discovery
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+
+## Running Locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to explore the portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js
+- **Styling**: CSS
+- **Components**: React
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/` - Next.js app directory with layout and main page
+- `components/` - React components (Terminal interface)
+- `lib/` - Core logic for command processing and terminal functionality
+- `public/` - Static assets
