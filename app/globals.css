@@ -175,12 +175,14 @@ body {
   border-bottom: 1px solid rgba(122, 162, 247, 0.15);
   user-select: none;
   flex-shrink: 0;
+  position: relative;
 }
 
 /* Window Control Buttons */
 .window-controls {
   display: flex;
   gap: 8px;
+  z-index: 1;
 }
 
 .window-btn {
@@ -233,6 +235,9 @@ body {
 
 /* Title Bar Title */
 .terminal-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 13px;
   color: var(--terminal-secondary);
   font-weight: 500;
@@ -241,6 +246,20 @@ body {
 
 .titlebar-spacer {
   width: 62px; /* Balance the window controls */
+}
+
+.titlebar-logo {
+  height: 50px;
+  width: auto;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.titlebar-logo:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 /* Selection */
@@ -552,6 +571,14 @@ strong {
 
   .terminal-title {
     font-size: 11px;
+  }
+
+  .titlebar-logo {
+    display: none;
+  }
+
+  .window-controls {
+    display: none;
   }
 
   .neofetch-container {

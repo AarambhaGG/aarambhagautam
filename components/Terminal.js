@@ -182,6 +182,14 @@ export default function Terminal() {
     <div className={`terminal-window ${isMinimized ? 'minimized' : ''} ${isMaximized ? 'maximized' : ''}`}>
       {/* Title Bar */}
       <div className="terminal-titlebar">
+        <img 
+          src="/images/logo.png" 
+          alt="Logo" 
+          className="titlebar-logo"
+          onClick={() => window.location.reload()}
+          title="Reload"
+        />
+        <div className="terminal-title">nayan@portfolio: ~</div>
         <div className="window-controls">
           <button 
             className="window-btn maximize" 
@@ -192,8 +200,6 @@ export default function Terminal() {
             title={isMaximized ? "Restore" : "Maximize"}
           />
         </div>
-        <div className="terminal-title">nayan@portfolio: ~</div>
-        <div className="titlebar-spacer"></div>
       </div>
 
       {/* Terminal Content */}
